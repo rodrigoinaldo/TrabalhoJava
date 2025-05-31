@@ -1,7 +1,6 @@
 package com.medico.clickmed.service;
 
 import com.medico.clickmed.model.Agenda;
-import com.medico.clickmed.model.Medico;
 import com.medico.clickmed.repository.AgendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AgendaController {
+public class AgendaService {
 
     @Autowired
     private AgendaRepository agendaRepository;
