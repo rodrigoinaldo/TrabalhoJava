@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,15 +23,29 @@ public class PacienteController {
         return "paciente/formulario";
     }
 
-    @PostMapping()
-    public String inserir(Paciente paciente, Model model){
-        return iniciar( paciente, model );
-    }
-
     @GetMapping("/listar")
     public  String paginaListar(Model model){
-        model.addAttribute("paciente", pacienteService.listartodos());
+        model.addAttribute("pacientes", pacienteService.listartodos());
         return "paciente/lista";
     }
+
+    @PostMapping()
+    public String salvar(Paciente paciente, Model model){
+        pacienteService.save(paciente);
+        return "redirect:paciente/listar";
+    }
+
+    @GetMapping("editar/{id}")
+    public String alterar(@PathVariable Long id, Model model){
+        model.addAttribute("paciente", pacienteService.buscarId(id));
+        return "paciente/formulario";
+    }
+
+    @GetMapping("remover/{id}")
+    public String remover(@PathVariable Long id, Model model){
+        pacienteService.deletar(id);
+        return "paciente/lista";
+    }
+
 
 }

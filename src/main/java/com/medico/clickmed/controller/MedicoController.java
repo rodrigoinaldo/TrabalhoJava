@@ -1,11 +1,13 @@
 package com.medico.clickmed.controller;
 
 import com.medico.clickmed.model.Medico;
+import com.medico.clickmed.model.Paciente;
 import com.medico.clickmed.service.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,16 +23,27 @@ public class MedicoController {
         return "medico/formulario";
     }
 
-    @PostMapping()
-        public String inserir(Medico medico, Model model){
-            return iniciar( medico, model );
-    }
-
     @GetMapping("/listar")
     public  String paginaListar(Model model){
-        model.addAttribute("medico", medicoService.listartodos());
+        model.addAttribute("medicos", medicoService.listartodos());
         return "medico/lista";
     }
 
+    @PostMapping()
+    public String salvar(Medico medico, Model model){
+        medicoService.criar(medico);
+        return "redirect:medico/listar";
+    }
 
+    @GetMapping("editar/{id}")
+    public String alterar(@PathVariable Long id, Model model){
+        model.addAttribute("medico", medicoService.buscarId(id));
+        return "medico/formulario";
+    }
+
+    @GetMapping("remover/{id}")
+    public String remover(@PathVariable Long id, Model model){
+        medicoService.deletar(id);
+        return "medico/lista";
+    }
 }
