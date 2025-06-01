@@ -14,11 +14,11 @@ public class Agenda {
     private Long id;
 
     @ManyToOne // interligação de tabelas
-    @Column(name = "medico_id")
+    @JoinColumn(name = "medico_id") // quando for chave estrangeira colocar esse "JoinColumn"
     private Medico medico;
 
     @ManyToOne
-    @Column(name = "paciente_id")
+    @JoinColumn(name = "paciente_id")// quando for chave estrangeira colocar esse "JoinColumn"
     private Paciente paciente;
 
     @Column(name = "data_hora", nullable = false)
