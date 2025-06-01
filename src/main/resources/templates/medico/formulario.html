@@ -1,11 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.'thymeleaf'.org">
 <head th:include="index :: header">
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/medico.form.css}">
 
 </head>
 <body>
 <div th:include=" index :: menu"></div>
+
+<h2 th:text="${medico.id == null ? 'Cadastrar Médico' : 'Editar Médico'}"></h2>
+
+<form th:action="@{/medico}" method="post" th:object="${medico}">
+    <input type="hidden" th:field="*{id}"/> <!-- Campo oculto para ID -->
+
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" th:field="*{nome}" required><br>
+
+    <label for="crm">CRM:</label>
+    <input type="text" id="crm" name="crm" th:field="*{CRM}"><br>
+
+    <label for="especialidade">Especialidade:</label>
+    <input type="text" id="especialidade" name="especialidade" th:field="*{especialidade}" required><br>
+
+    <button type="submit" th:text="${medico.id == null ? 'Cadastrar' : 'Salvar Alterações'}"></button>
+</form>
+
+
 </body>
 </html>
