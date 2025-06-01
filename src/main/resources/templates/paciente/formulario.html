@@ -3,9 +3,32 @@
 <head th:include="index :: header">
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/paciente.form.css}">
 
 </head>
 <body>
 <div th:include=" index :: menu"></div>
+
+<h2 th:text="${paciente.id == null ? 'Cadastrar Paciente' : 'Editar Paciente'}"></h2>
+
+<form th:action="@{/paciente}" method="post" th:object="${paciente}">
+    <input type="hidden" th:field="*{id}"/> <!-- Campo oculto para ID -->
+
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" th:field="*{nome}" required><br>
+
+    <label for="cpf">CPF:</label>
+    <input type="text" id="cpf" name="cpf" th:field="*{CPF}" required><br>
+
+    <label for="data">Data de Nascimento:</label>
+    <input type="date" id="data" name="data" th:field="*{data}" required><br>
+
+    <label for="telefone">Telefone/WhatsApp:</label>
+    <input type="text" id="telefone" name="telefone" th:field="*{telefone}"><br>
+
+    <button type="submit" th:text="${paciente.id == null ? 'Cadastrar' : 'Salvar Alterações'}"></button>
+</form>
+
+
 </body>
 </html>

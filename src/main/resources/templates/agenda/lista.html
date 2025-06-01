@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="index :: header">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/agenda.list.css}">
+
+</head>
+<body>
+<div th:include=" index :: menu"></div>
+
+<h2>Lista de Agendamentos</h2>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Médico</th>
+        <th>Paciente</th>
+        <th>Data e Hora</th>
+        <th>Ações</th>
+    </tr>
+    <tr th:each="agenda : ${agendas}">
+        <td th:text="${agenda.id}"></td>
+        <td th:text="${agenda.medico.nome}"></td>
+        <td th:text="${agenda.paciente.nome}"></td>
+        <td th:text="${agenda.dataHora}"></td>
+        <td>
+            <a th:href="@{/agenda/editar/{id}(id=${agenda.id})}">Editar</a>
+            <a th:href="@{/agenda/remover/{id}(id=${agenda.id})}" onclick="return confirm('Tem certeza que deseja excluir este agendamento?')">Excluir</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

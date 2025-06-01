@@ -3,9 +3,33 @@
 <head th:include="index :: header">
   <meta charset="UTF-8">
   <title>Title</title>
+  <link rel="stylesheet" th:href="@{/css/medico.list.css}">
 
 </head>
 <body>
 <div th:include=" index :: menu"></div>
+
+<h2>Lista de Médicos</h2>
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Nome</th>
+    <th>CRM</th>
+    <th>Especialidade</th>
+    <th>Ações</th>
+  </tr>
+  <tr th:each="medico : ${medicos}">
+    <td th:text="${medico.id}"></td>
+    <td th:text="${medico.nome}"></td>
+    <td th:text="${medico.CRM}"></td>
+    <td th:text="${medico.especialidade}"></td>
+    <td>
+      <a th:href="@{/medico/editar/{id}(id=${medico.id})}">Editar</a>
+      <a th:href="@{/medico/remover/{id}(id=${medico.id})}" onclick="return confirm('Tem certeza que deseja excluir este médico?')">Excluir</a>
+    </td>
+  </tr>
+</table>
+
+
 </body>
 </html>

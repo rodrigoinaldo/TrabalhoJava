@@ -3,20 +3,24 @@
 <head  th:fragment="header">
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head >
 <body>
-    <div>
-        <div th:fragment="menu">
-            <h1> MEDICO </h1>
+<div>
+    <div th:fragment="menu">
+        <h1> MEDICO </h1>
 
-            <a th:href="@{/}">Home</a>
+        <a th:href="@{/}">Home</a>
 
-            <a th:href="@{/medico}">inserir medico</a>
-            <a th:href="@{/medico/listar}">lista de medicos</a>
+        <a th:href="@{/medico}">inserir medico</a>
+        <a th:href="@{/medico/listar}">lista de medicos</a>
 
-            <a th:href="@{/paciente}"> inserir paciente </a>
-            <a th:href="@{/paciente/listar}">lista de pacientes</a>
-        </div>
+        <a th:href="@{/paciente}"> inserir paciente </a>
+        <a th:href="@{/paciente/listar}">lista de pacientes</a>
+
+        <a th:href="@{/agenda}"> inserir agenda </a>
+        <a th:href="@{/agenda/listar}">lista de agenda</a>
     </div>
+</div>
 </body>
 </html>
